@@ -1,0 +1,6 @@
+
+project('feign-consumer-service') {
+    dependencies {
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    }
+}

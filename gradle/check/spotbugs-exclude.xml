@@ -1,0 +1,8 @@
+<FindBugsFilter>
+    <Match>
+        <Or>
+            <Class name="core.framework.monad.Object"/>
+            <Class name="core.framework.monad.ObjectTest"/>
+        </Or>
+    </Match>
+</FindBugsFilter>

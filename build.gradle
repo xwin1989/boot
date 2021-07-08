@@ -1,0 +1,25 @@
+apply from: file("${rootDir}/gradle/project.gradle")
+
+subprojects {
+    group = "com.neal"
+    version = "1.0.0"
+}
+
+configure(subprojects.findAll { it.name.endsWith('-service') }) {
+    apply from: file("${rootDir}/gradle/cloud.gradle")
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+}
+
+configure(subprojects.findAll { it.name.endsWith('-eureka') }) {
+    apply from: file("${rootDir}/gradle/cloud.gradle")
+    dependencies {
+        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        runtimeOnly 'com.h2database:h2'
+    }
+}

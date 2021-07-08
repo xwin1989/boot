@@ -1,0 +1,47 @@
+
+buildscript {
+    ext {
+        springBootVersion = '2.5.2'
+        dependencyManagementVersion = '1.0.11.RELEASE'
+        springCloudVersion = '2020.0.0'
+    }
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}"
+    }
+}
+
+// use gradlew -Penv=${env} to pass
+def env = hasProperty('env') ? env : null
+apply plugin: 'application'
+apply plugin: org.springframework.boot.gradle.plugin.SpringBootPlugin
+apply plugin: io.spring.gradle.dependencymanagement.DependencyManagementPlugin
+
+//replace resources
+tasks.named("processResources").configure {
+    if (env != null) {
+        assert project.file("conf/${env}/resources").exists()
+        inputs.dir project.file("conf/${env}/resources")
+        from "conf/${env}/resources"
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
+}
+
+tasks.named("distTar").configure {
+    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
+}
+
+tasks.named("distZip").configure {
+    enabled = false
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}

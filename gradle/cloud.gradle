@@ -1,0 +1,9 @@
+apply from: file("${rootDir}/gradle/boot.gradle")
+
+def springCloudVersion = '2020.0.0'
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}

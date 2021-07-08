@@ -1,0 +1,33 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+  jpa:
+      hibernate.ddl-auto: update
+      generate-ddl: true
+      show-sql: true
+
+
+management:
+  info:
+    git:
+      mode: "full"
+  endpoint:
+    health:
+      group:
+        custom:
+          exclude: "db,info"
+    shutdown:
+      enabled: true
+    beans:
+      cache:
+        time-to-live: "10s"
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics,db"
+

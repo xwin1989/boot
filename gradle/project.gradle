@@ -5,6 +5,10 @@ subprojects { subproject ->
 
     apply plugin: 'java'
 
+    jar {
+        enabled = true
+    }
+
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 
@@ -14,8 +18,8 @@ subprojects { subproject ->
     }
 
     repositories {
-        mavenCentral()
         mavenLocal()
+        mavenCentral()
     }
 
     buildDir = "${rootDir}/build/${rootDir.relativePath(projectDir)}"

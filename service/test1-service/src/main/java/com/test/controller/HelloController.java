@@ -7,13 +7,11 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Observable;
-
 /**
  * @author Neal
  */
 @RestController
-public class HelloController {
+public class HelloController{
     private final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     @Autowired

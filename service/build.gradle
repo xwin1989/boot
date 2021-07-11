@@ -1,6 +1,18 @@
-
 project('feign-consumer-service') {
     dependencies {
         implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+        implementation project(':service:test1-service-interface')
     }
+}
+
+project('test1-service') {
+    dependencies {
+        implementation project(':service:test1-service-interface')
+    }
+}
+
+project('test1-service-interface'){
+//    jar{
+//        enabled = true
+//    }
 }

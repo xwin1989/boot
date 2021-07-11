@@ -17,4 +17,15 @@ public class ConsumerController {
     public String helloConsumer() {
         return helloService.hello();
     }
+
+    @RequestMapping(value = "/feign-consumer2", method = RequestMethod.GET)
+    public String helloConsumer2() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(helloService.hello());
+        builder.append('\n');
+        builder.append(helloService.hello4("neal", "v1"));
+        builder.append('\n');
+        builder.append(helloService.hello5().getName());
+        return builder.toString();
+    }
 }

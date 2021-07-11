@@ -2,6 +2,7 @@ include 'cloud:eureka1-eureka',
         'cloud:eureka2-eureka'
 
 include 'service:test1-service',
+        'service:test1-service-interface',
         'service:feign-consumer-service'
 
 include 'migration:test1-flyway-migration',

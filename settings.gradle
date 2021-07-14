@@ -5,6 +5,7 @@ include 'service:test1-service',
         'service:test1-service-interface',
         'service:feign-consumer-service',
         'service:consumer-service',
+        'service:consumer2-service',
         'service:provider-service',
         'service:gateway-service'
 

@@ -15,6 +15,6 @@ public class ConsumerController {
 
     @GetMapping("/hi-feign")
     public String hiFeign(){
-        return providerClient.hi("feign1");
+        return providerClient.hi("feign2");
     }
 }

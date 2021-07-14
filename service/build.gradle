@@ -1,4 +1,6 @@
 project('feign-consumer-service') {
+    apply from: file("${rootDir}/gradle/cloud.gradle")
+
     dependencies {
         implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
         implementation project(':service:test1-service-interface')
@@ -6,8 +8,14 @@ project('feign-consumer-service') {
 }
 
 project('test1-service') {
+    apply from: file("${rootDir}/gradle/cloud.gradle")
+
     dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+
         implementation project(':service:test1-service-interface')
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
     }
 }
 
@@ -23,7 +31,8 @@ project('provider-service') {
     }
 }
 
-project('consumer-service') {
+configure([project('consumer-service'),
+           project('consumer2-service')]) {
     apply from: file("${rootDir}/gradle/cloud.gradle")
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'

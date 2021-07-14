@@ -1,0 +1,38 @@
+server:
+  port: 5000
+
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        port: 15000
+        dashboard: localhost:8748
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
+      routes:
+        - id: provider
+          uri: lb://provider-service
+          predicates:
+            - Path=/provider/**
+          filters:
+            - StripPrefix=1
+        - id: consumer
+          uri: lb://consumer-service
+          predicates:
+            - Path=/consumer/**
+          filters:
+            - StripPrefix=1
+
+spring.zipkin.sender.type: web
+spring.sleuth.sampler.probability: 1
+spring.zipkin.base-url: http://localhost:9411/

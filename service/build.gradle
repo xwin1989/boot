@@ -11,8 +11,44 @@ project('test1-service') {
     }
 }
 
-project('test1-service-interface'){
-//    jar{
-//        enabled = true
-//    }
+project('provider-service') {
+    apply from: file("${rootDir}/gradle/cloud.gradle")
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+        implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
+
+        implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+
+    }
+}
+
+project('consumer-service') {
+    apply from: file("${rootDir}/gradle/cloud.gradle")
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+
+        implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+        implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
+
+        implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+        implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+        implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+    }
+}
+
+project('gateway-service') {
+    apply from: file("${rootDir}/gradle/cloud.gradle")
+    dependencies {
+        implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+        implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
+        implementation 'com.alibaba.cloud:spring-cloud-alibaba-sentinel-gateway'
+
+        implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+        implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
+        implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+        implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+
+    }
 }

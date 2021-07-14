@@ -3,8 +3,13 @@ include 'cloud:eureka1-eureka',
 
 include 'service:test1-service',
         'service:test1-service-interface',
-        'service:feign-consumer-service'
+        'service:feign-consumer-service',
+        'service:consumer-service',
+        'service:provider-service',
+        'service:gateway-service'
 
 include 'migration:test1-flyway-migration',
         'migration:test2-mongo-migration'
+
+//include 'infra:'
 

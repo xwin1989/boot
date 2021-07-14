@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Neal
  */
 @RestController
-public class HelloController{
+public class HelloController {
     private final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     @Autowired

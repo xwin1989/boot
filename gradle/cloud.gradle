@@ -1,9 +1,11 @@
 apply from: file("${rootDir}/gradle/boot.gradle")
 
-def springCloudVersion = '2020.0.0'
+def springCloudVersion = '2020.0.2'
+def springCloudAlibabaVersion = '2020.0.RC1'
 
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
     }
 }
